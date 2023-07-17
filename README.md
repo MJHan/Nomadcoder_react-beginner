@@ -9,7 +9,7 @@
 - Create Movie App
 
 ## 참고사이트
-- NomadCoder Git Repository : https://github.com/nomadcoders/javascript-for-beginners/
+- NomadCoder Git Repository : https://github.com/nomadcoders/react-for-beginners/
 - 노션 스터디 노트 : https://www.notion.so/mjhan/ReactJS-2d10e17211f14b7fb270c53fb2859b12?pvs=4
 
 ## 실행
