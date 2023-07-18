@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 function App() {
   const [counter, counterUp] = useState(0);
   const [keyword, setKeyword] = useState("");
+  const [showing, setShowing] = useState(false);
   const onChange = (event) => setKeyword(event.target.value);
   const onClick = () => counterUp((current) => current + 1);
+  const showHide = () => setShowing((current) => !current);
 
   useEffect(() => {
     console.log("I run only once.");
@@ -20,6 +22,14 @@ function App() {
   useEffect(() => {
     console.log("I run when 'keyword' & 'counter' changes.");
   }, [counter, keyword]);
+  function Hello() {
+    useEffect(() => {
+      console.log("hi :)");
+      return () => console.log("bye :("); // this return function called CLEANUP FUNCTION
+    }, []);
+    return <h1>Hello</h1>;
+  }
+
   return (
     <div>
       <input
@@ -30,6 +40,8 @@ function App() {
       ></input>
       <h1 className={styles.title}>Welcome back! {counter}</h1>
       <Button text={"continue"} onClick={onClick}></Button>
+      <div>{showing ? <Hello /> : null}</div>
+      <button onClick={showHide}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }
