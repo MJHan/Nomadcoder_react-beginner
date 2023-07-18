@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Todo from "./Todo";
 import styles from "./App.module.css";
 import { useState, useEffect } from "react";
 
@@ -32,6 +33,8 @@ function App() {
 
   return (
     <div>
+      <Todo></Todo>
+      <hr></hr>
       <input
         value={keyword}
         onChange={onChange}
