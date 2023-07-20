@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Coins from "./Coins";
 import Todo from "./Todo";
 import styles from "./App.module.css";
 import { useState, useEffect } from "react";
@@ -33,6 +34,8 @@ function App() {
 
   return (
     <div>
+      <Coins></Coins>
+      <hr></hr>
       <Todo></Todo>
       <hr></hr>
       <input
