@@ -5,28 +5,28 @@ function Coins() {
   const [coins, setCoins] = useState([]);
   const [coin, setCoin] = useState(0);
   const [cash, setCash] = useState(0);
-  const [result, setResult] = useState({});
+  // const [result, setResult] = useState({});
 
   const onChange = (event) => {
     event.preventDefault();
     setCash(event.target.value);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    setResult((current) => ({
-      name: current.name,
-      value: Number(cash) / Number(coin),
-    }));
-  };
+  // const onSubmit = (event) => {
+  //   event.preventDefault();
+  //   setResult((current) => ({
+  //     name: current.name,
+  //     value: Number(cash) / Number(coin),
+  //   }));
+  // };
 
   const onChangeList = (event) => {
     event.preventDefault();
     setCoin(event.target.value.match("[0-9]+.[0-9]+"));
-    setResult({
-      name: event.target.value.match("\\((.*?)\\)")[0],
-      value: Number(cash) / Number(coin),
-    });
+    // setResult({
+    //   name: event.target.value.match("\\((.*?)\\)")[0],
+    //   value: Number(cash) / Number(coin),
+    // });
   };
   useEffect(() => {
     fetch("https://api.coinpaprika.com/v1/tickers")
@@ -34,34 +34,23 @@ function Coins() {
       .then((json) => {
         setCoins(json);
         setLoading(false);
-        setResult({
-          name: `(${json[0].symbol})`,
-          value: 0,
-        });
+        // setResult({
+        //   name: `(${json[0].symbol})`,
+        //   value: 0,
+        // });
         setCoin(json[0].quotes.USD.price);
       });
   }, []);
-  useEffect(() => {
-    setResult((current) => ({
-      name: current.name,
-      value: Number(cash) / Number(coin),
-    }));
-    console.log("Cacluate");
-  }, [coin, cash]);
+  // useEffect(() => {
+  //   setResult((current) => ({
+  //     name: current.name,
+  //     value: Number(cash) / Number(coin),
+  //   }));
+  //   console.log("Cacluate");
+  // }, [coin, cash]);
   return (
     <div>
       <h1>The Coins! {loading ? "" : `(${coins.length})`}</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          onChange={onChange}
-          value={cash}
-          type="number"
-          placeholder="Enter USD to change"
-          required
-        ></input>
-        USD
-        <button>Convert</button>
-      </form>
       {loading ? (
         <strong>Loading...</strong>
       ) : (
@@ -73,8 +62,21 @@ function Coins() {
           ))}
         </select>
       )}
+      <h2> Please enter the amount</h2>
+      {/* <form onSubmit={onSubmit}> */}
+      <input
+        onChange={onChange}
+        value={cash}
+        type="number"
+        placeholder="Enter USD to change"
+        required
+      ></input>
+      USD
+      {/* <button>Convert</button> */}
+      {/* </form> */}
       <h3>
-        {result.value} {result.name}
+        {/* {result.value} {result.name} */}
+        You can get {cash / coin}
       </h3>
     </div>
   );
